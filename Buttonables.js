@@ -6,6 +6,7 @@ const StarButton = styled.button`
 width: 20em;
 height: 5em;
 background: black;
+margin-bottom: 2em;
 `;
 
 const StarText = styled.span`
@@ -15,6 +16,7 @@ font-size: 20px;
 
 const Buttonables = ({ request }) => {
   const [data, setData] = React.useState([]);
+  const [activeStarPerson, setActiveStarPerson] = React.useState(false);
 
   React.useEffect(() => {
       axios.get(request).then(response => {
@@ -22,19 +24,27 @@ const Buttonables = ({ request }) => {
       });
   }, []);
 
+const handleToggle = () => {
+  setActiveStarPerson(!activeStarPerson)
+}
+
   return (
-    <>
+    <div>
       <h1>The Aliens</h1>
-      <div>
-      {
-        data && data.map((alien) => (
-          <StarButton key={alien.name}>
-            <StarText> {alien.name} </StarText>       
+      {data && data.map((alien, index) => (
+        <div>
+          <StarButton key={index} onClick={handleToggle}>
+            <StarText> {alien.name}</StarText>       
           </StarButton>
+          <div>
+            {activeStarPerson && (
+              <p>{alien.birth_year}</p>
+            )}
+          </div>
+        </div>
         ))
-      }
-      </div>
-    </>
+        }
+    </div>
   )
 }
 
