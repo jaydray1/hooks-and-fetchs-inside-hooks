@@ -24,27 +24,31 @@ const Buttonables = ({ request }) => {
       });
   }, []);
 
-const handleToggle = () => {
+const handleToggle = (event) => {
   setActiveStarPerson(!activeStarPerson)
 }
 
   return (
-    <div>
+    <>
       <h1>The Aliens</h1>
-      {data && data.map((alien, index) => (
         <div>
-          <StarButton key={index} onClick={handleToggle}>
-            <StarText> {alien.name}</StarText>       
-          </StarButton>
-          <div>
-            {activeStarPerson && (
-              <p>{alien.birth_year}</p>
-            )}
-          </div>
+          {data && data.map((alien, index) => (
+            <ul key={index}>
+            <li style={{listStyle: 'none'}}>
+              <StarButton key={index} onClick={handleToggle}>
+                <StarText> {alien.name}</StarText>       
+              </StarButton>
+              <div> 
+              {
+                activeStarPerson && 
+                  <p>{alien.birth_year}</p>
+              }
+              </div>
+            </li>
+            </ul>
+            ))}
         </div>
-        ))
-        }
-    </div>
+    </>
   )
 }
 
