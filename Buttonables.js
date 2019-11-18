@@ -24,7 +24,7 @@ const Buttonables = ({ request }) => {
       });
   }, []);
 
-const handleToggle = (event) => {
+const handleToggle = () => {
   setActiveStarPerson(!activeStarPerson)
 }
 
@@ -33,8 +33,8 @@ const handleToggle = (event) => {
       <h1>The Aliens</h1>
         <div>
           {data && data.map((alien, index) => (
-            <ul key={index}>
-            <li style={{listStyle: 'none'}}>
+            <ul>
+            <li style={{listStyle: 'none'}}  key={index}>
               <StarButton key={index} onClick={handleToggle}>
                 <StarText> {alien.name}</StarText>       
               </StarButton>
