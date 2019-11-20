@@ -18,7 +18,7 @@ font-size: 20px;
 const Buttonables = ({ request }) => {
   const [data, setData] = React.useState([]);
   const [activeStarPerson, setActiveStarPerson] = React.useState(false);
-  const [ loading, setLoading ] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
       axios.get(request).then(response => {
@@ -52,7 +52,7 @@ const handleToggle = () => {
               <div> 
               {
                 activeStarPerson && 
-                  <p>{alien.birth_year}</p>
+                  <p>{activeStarPerson.birth_year}</p>
               }
               </div>
             </li>
