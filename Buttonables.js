@@ -18,10 +18,12 @@ font-size: 20px;
 const Buttonables = ({ request }) => {
   const [data, setData] = React.useState([]);
   const [activeStarPerson, setActiveStarPerson] = React.useState(false);
+  const [ loading, setLoading ] = React.useState(true);
 
   React.useEffect(() => {
       axios.get(request).then(response => {
-        setData(response.data.results)
+        setData(response.data.results);
+        setLoading(false);
       });
   }, []);
 
@@ -32,12 +34,14 @@ const handleToggle = () => {
   return (
     <>
       <h1>The Aliens</h1>
+      { loading ?
       <Loader
          type="Puff"
          color="#00BFFF"
          height={100}
          width={100}
       />
+      :
         <div>
           {data && data.map((alien, index) => (
             <ul>
@@ -55,6 +59,7 @@ const handleToggle = () => {
             </ul>
             ))}
         </div>
+      }
     </>
   )
 }
