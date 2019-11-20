@@ -1,6 +1,7 @@
 import * as React from 'react';
 import axios from 'axios';
 import styled from "styled-components";
+import Loader from 'react-loader-spinner'
 
 const StarButton = styled.button`
 width: 20em;
@@ -31,6 +32,12 @@ const handleToggle = () => {
   return (
     <>
       <h1>The Aliens</h1>
+      <Loader
+         type="Puff"
+         color="#00BFFF"
+         height={100}
+         width={100}
+      />
         <div>
           {data && data.map((alien, index) => (
             <ul>
